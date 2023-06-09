@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom'
 
 const Homepage = () => {
   return (
-    <div className=''>
-        <div className='relative flex justify-center'>
-            <aside className='h-[170px] w-full bg-[url("./assets/sidebar-mobile.png")] bg-red-600 bg-cover bg-no-repeat flex justify-center'>
-              <div className='flex gap-5 flex-row mt-8'>
+    <div className='md:flex md:justify-center md:items-center md:h-screen'>
+        <div className='relative flex justify-center md:bg-white md:p-5 md:gap-2 md:rounded-lg md:static'>
+            <aside className='h-[170px] w-full bg-[url("./assets/sidebar-mobile.png")] bg-red-600 bg-cover bg-no-repeat flex justify-center md:bg-[url("./assets/sidebar-desktop.png")] md:h-[600px] md:w-[250px] md:rounded-xl lg:w-270px]'>
+              {/* hidden in desktop view */}
+              <div className='flex gap-5 flex-row mt-8 md:hidden'>
                 <button className='border border-white rounded-full text-white font-semibold h-[35px] w-[35px]'>
                   1
                 </button>
@@ -22,9 +23,9 @@ const Homepage = () => {
                 </button>
               </div>
             </aside>
-            <div className='absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg'>
-              <h1 className='text-left text-2xl font-semibold mb-3 text-marineBlue'>Personal info</h1>
-              <p className=' text-coolGray'>Please provide your name, email address, and phone number.</p>
+            <div className='absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] lg:w-[700px] lg:px-20'>
+              <h1 className='text-left text-2xl font-semibold mb-3 text-marineBlue lg:text-4xl'>Personal info</h1>
+              <p className=' text-coolGray lg:text-lg'>Please provide your name, email address, and phone number.</p>
 
               <form className='w-full flex flex-col gap-5 mt-6'>
                 <div className='flex flex-col gap-1'>
@@ -52,9 +53,20 @@ const Homepage = () => {
                   />
                 </div>
               </form>
+
+              <div className='mt-20'>
+                <Link to={'/'} className='text-coolGray'>
+                  Go back
+                </Link>
+                <button className='w-[100px] h-[40px] rounded-sm bg-marineBlue text-white'>
+                  Next Step
+                </button>
+              </div>
             </div>
         </div>
-        <div className='bg-white px-4 py-3 w-full flex justify-between absolute bottom-0 items-center'>
+
+        {/* hidden in desktop view */}
+        <div className='bg-white px-4 py-3 w-full flex justify-between absolute bottom-0 items-center md:hidden'>
           <Link to={'/'} className='text-coolGray'>
             Go back
           </Link>
