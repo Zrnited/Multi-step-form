@@ -21,3 +21,24 @@ body {
   background-color: hsl(206, 94%, 95%);
   /* margin-bottom: 100px; */
 }
+
+.activity::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.activity::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+ 
+/* Handle */
+.activity::-webkit-scrollbar-thumb {
+  /* background: hsl(231, 11%, 63%);  */
+  background: hsl(229, 24%, 87%);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.activity::-webkit-scrollbar-thumb:hover {
+  background: hsl(231, 11%, 63%); 
+}

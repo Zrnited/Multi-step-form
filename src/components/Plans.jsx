@@ -1,9 +1,12 @@
 import React from 'react'
 import Switch from './Switch'
+import classNames from 'classnames'
 
 const Plans = ({ isSelected, setIsSelected }) => {
   return (
-    <div className='absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] lg:w-[700px] lg:px-20'>
+    <div className={classNames('absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] lg:w-[700px] lg:px-20', {
+      'activity h-[494px] overflow-y-scroll': isSelected,
+    })}>
 
       {/* Monthly */}
       {!isSelected && (<div>
