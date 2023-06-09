@@ -1,5 +1,6 @@
 import React from 'react'
 // import sidebarImg from '../assets/sidebar-mobile.png'
+import { Link } from 'react-router-dom'
 
 const Homepage = () => {
   return (
@@ -52,6 +53,14 @@ const Homepage = () => {
                 </div>
               </form>
             </div>
+        </div>
+        <div className='bg-white px-4 py-3 w-full flex justify-between absolute bottom-0 items-center'>
+          <Link to={'/'} className='text-coolGray'>
+            Go back
+          </Link>
+          <button className='w-[100px] h-[40px] rounded-sm bg-marineBlue text-white'>
+            Next Step
+          </button>
         </div>
     </div>
   )
