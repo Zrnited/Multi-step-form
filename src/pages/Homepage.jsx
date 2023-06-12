@@ -2,11 +2,32 @@ import React, { useState } from 'react'
 // import sidebarImg from '../assets/sidebar-mobile.png'
 import { Link } from 'react-router-dom'
 import Plans from '../components/Plans'
+import Addons from '../components/Addons';
 
 const Homepage = () => {
 
-  const [plans, setPlans] = useState(false);
+  // const [plans, setPlans] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
+  const [switchAddon, setSwitchAddon] = useState(false)
+  const [formCount, setFormCount] = useState(0);
+
+  const increaseFormCount = () => {
+    if(formCount !== 3){
+      setFormCount(formCount + 1);
+    } else {
+      return
+    }
+    console.log(formCount);
+  }
+
+  const decreaseFormCount = () => {
+    if(formCount !== 0){
+      setFormCount(formCount - 1);
+    } else {
+      return
+    }
+    console.log(formCount);
+  }
 
   return (
     <div className='md:flex md:justify-center md:items-center md:h-screen'>
@@ -69,7 +90,7 @@ const Homepage = () => {
                 </div>
               </div>
             </aside>
-            {!plans && (<div className='absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] lg:w-[700px] lg:px-20'>
+            {formCount === 0 && (<div className='absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] lg:w-[700px] lg:px-20'>
               <h1 className='text-left text-2xl font-semibold mb-3 text-marineBlue lg:text-4xl'>Personal info</h1>
               <p className=' text-coolGray lg:text-lg'>Please provide your name, email address, and phone number.</p>
 
@@ -110,15 +131,16 @@ const Homepage = () => {
                 </button>
               </div>
             </div>)}
-            {plans && (<Plans isSelected={isSelected} setIsSelected={setIsSelected} />)}
+            {formCount === 1 && (<Plans isSelected={isSelected} setIsSelected={setIsSelected} />)}
+            {formCount === 2 && <Addons isSelected={switchAddon} setIsSelected={setSwitchAddon} />}
         </div>
 
         {/* hidden in desktop view */}
         <div className='bg-white px-4 py-3 w-full flex justify-between absolute bottom-0 items-center md:hidden'>
-          <Link to={'/'} className='text-coolGray'>
+          <Link onClick={decreaseFormCount} to={'/'} className='text-coolGray'>
             Go back
           </Link>
-          <button className='w-[100px] h-[40px] rounded-sm bg-marineBlue text-white' onClick={()=>setPlans(!plans)}>
+          <button className='w-[100px] h-[40px] rounded-sm bg-marineBlue text-white' onClick={increaseFormCount}>
             Next Step
           </button>
         </div>
