@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 // import sidebarImg from '../assets/sidebar-mobile.png'
 import { Link } from 'react-router-dom'
+import classNames from 'classnames';
 import Plans from '../components/Plans'
 import Addons from '../components/Addons';
+import Summary from '../components/Summary';
 
 const Homepage = () => {
 
@@ -133,6 +135,7 @@ const Homepage = () => {
             </div>)}
             {formCount === 1 && (<Plans isSelected={isSelected} setIsSelected={setIsSelected} />)}
             {formCount === 2 && <Addons isSelected={switchAddon} setIsSelected={setSwitchAddon} />}
+            {formCount === 3 && <Summary />}
         </div>
 
         {/* hidden in desktop view */}
@@ -140,8 +143,10 @@ const Homepage = () => {
           <Link onClick={decreaseFormCount} to={'/'} className='text-coolGray'>
             Go back
           </Link>
-          <button className='w-[100px] h-[40px] rounded-sm bg-marineBlue text-white' onClick={increaseFormCount}>
-            Next Step
+          <button className={classNames('w-[100px] h-[40px] rounded-[5px] bg-marineBlue text-white', {
+            'bg-purplishBlue': formCount === 3,
+          })} onClick={increaseFormCount}>
+            {formCount === 3 ? 'Confirm' : 'Next step'}
           </button>
         </div>
     </div>

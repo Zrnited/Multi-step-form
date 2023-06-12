@@ -9,15 +9,15 @@ const Addons = ({ isSelected, setIsSelected }) => {
 
       {/* Monthly */}
       {!isSelected && (<div>
-        <h1 className='text-left text-2xl font-semibold mb-3 text-marineBlue lg:text-4xl'>Pick add-ons</h1>
-        <p className=' text-coolGray lg:text-lg'>Add-ons help enhance your gaming experience.</p>
+        <h1 className='text-left text-2xl font-semibold text-marineBlue sm:mb-3 lg:text-4xl'>Pick add-ons</h1>
+        <p className=' text-coolGray text-sm sm:text-base lg:text-lg'>Add-ons help enhance your gaming experience.</p>
         <div className='py-5 flex flex-col gap-4'>
           <div className='flex flex-row gap-4 items-center justify-between border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue'>
             <div className='flex flex-row gap-6 items-center lg:pl-3'>
               <input type='checkbox' className='h-[20px] w-[20px]' />
               <div className='flex flex-col'>
                 <h2 className='font-semibold text-marineBlue lg:text-xl'>Online service</h2>
-                <p className='text-coolGray text-sm lg:text-base'>Access to multiplayer games</p>
+                <p className='text-coolGray text-xs sm:text-sm lg:text-base'>Access to multiplayer games</p>
               </div>
             </div>
             <p className='text-sm text-purplishBlue font-semibold lg:text-base'>+$1/mo</p>
@@ -27,7 +27,7 @@ const Addons = ({ isSelected, setIsSelected }) => {
               <input type='checkbox' className='h-[20px] w-[20px]' />
               <div className='flex flex-col'>
                 <h2 className='font-semibold text-marineBlue lg:text-xl'>Larger storage</h2>
-                <p className='text-coolGray text-sm lg:text-base'>Extra 1TB of cloud save</p>
+                <p className='text-coolGray text-xs sm:text-sm  lg:text-base'>Extra 1TB of cloud save</p>
               </div>
             </div>
             <p className='text-sm text-purplishBlue font-semibold'>+$2/mo</p>
@@ -37,7 +37,7 @@ const Addons = ({ isSelected, setIsSelected }) => {
               <input type='checkbox' className='h-[20px] w-[20px]' />
               <div className='flex flex-col'>
                 <h2 className='font-semibold text-marineBlue lg:text-xl'>Customizable profile</h2>
-                <p className='text-coolGray text-sm lg:text-base'>Customize theme on your profile</p>
+                <p className='text-coolGray text-xs sm:text-sm  lg:text-base'>Customize theme on your profile</p>
               </div>
             </div>
             <p className='text-sm text-purplishBlue font-semibold'>+$2/mo</p>
@@ -47,15 +47,15 @@ const Addons = ({ isSelected, setIsSelected }) => {
 
       {/* Yearly */}
       {isSelected && (<div>
-        <h1 className='text-left text-2xl font-semibold mb-3 text-marineBlue lg:text-4xl'>Pick add-ons</h1>
-        <p className=' text-coolGray lg:text-lg'>Add-ons help enhance your gaming experience.</p>
+        <h1 className='text-left text-2xl font-semibold text-marineBlue sm:mb-3 lg:text-4xl'>Pick add-ons</h1>
+        <p className=' text-coolGray text-sm sm:text-base lg:text-lg'>Add-ons help enhance your gaming experience.</p>
         <div className='py-5 flex flex-col gap-4'>
           <div className='flex flex-row gap-4 items-center justify-between border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue'>
             <div className='flex flex-row gap-6 items-center lg:pl-3'>
               <input type='checkbox' className='h-[20px] w-[20px]' />
               <div className='flex flex-col'>
                 <h2 className='font-semibold text-marineBlue lg:text-xl'>Online service</h2>
-                <p className='text-coolGray text-sm lg:text-base'>Access to multiplayer games</p>
+                <p className='text-coolGray text-xs sm:text-sm lg:text-base'>Access to multiplayer games</p>
               </div>
             </div>
             <p className='text-sm text-purplishBlue font-semibold'>+$10/yr</p>
@@ -65,7 +65,7 @@ const Addons = ({ isSelected, setIsSelected }) => {
               <input type='checkbox' className='h-[20px] w-[20px]' />
               <div className='flex flex-col'>
                 <h2 className='font-semibold text-marineBlue lg:text-xl'>Larger storage</h2>
-                <p className='text-coolGray text-sm lg:text-base'>Extra 1TB of cloud save</p>
+                <p className='text-coolGray text-xs sm:text-sm lg:text-base'>Extra 1TB of cloud save</p>
               </div>
             </div>
             <p className='text-sm text-purplishBlue font-semibold'>+$20/yr</p>
@@ -75,7 +75,7 @@ const Addons = ({ isSelected, setIsSelected }) => {
               <input type='checkbox' className='h-[20px] w-[20px]' />
               <div className='flex flex-col'>
                 <h2 className='font-semibold text-marineBlue lg:text-xl'>Customizable profile</h2>
-                <p className='text-coolGray text-sm lg:text-base'>Customize theme on your profile</p>
+                <p className='text-coolGray text-xs sm:text-sm lg:text-base'>Customize theme on your profile</p>
               </div>
             </div>
             <p className='text-sm text-purplishBlue font-semibold'>+$20/yr</p>
@@ -84,7 +84,7 @@ const Addons = ({ isSelected, setIsSelected }) => {
       </div>)}
 
 
-      <div className='bg-slate-100 mt-2 p-2 flex flex-row justify-around items-center'>
+      <div className='bg-slate-100 p-2 flex flex-row justify-around items-center sm:mt-2'>
           <h1 className='font-medium text-coolGray'>Monthly</h1>
           <Switch isSelected={isSelected} setIsSelected={setIsSelected} />
           <h1 className='font-medium text-coolGray'>Yearly</h1>
