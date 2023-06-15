@@ -1,21 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import sidebarImg from '../assets/sidebar-mobile.png'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames';
 import Plans from '../components/Plans'
 import Addons from '../components/Addons';
 import Summary from '../components/Summary';
+import ThankYou from '../components/ThankYou';
 
 const Homepage = () => {
 
   // const [plans, setPlans] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const [switchAddon, setSwitchAddon] = useState(false)
+  const [year, setYear] = useState(false)
   const [formCount, setFormCount] = useState(0);
 
   const increaseFormCount = () => {
-    if(formCount !== 3){
+    if(formCount !== 5){
       setFormCount(formCount + 1);
+      // if(formCount === 3){
+      //   setYear(true);
+      // } else {
+      //   setFormCount(formCount + 1);
+      //   setYear(false);
+      // }
     } else {
       return
     }
@@ -30,6 +38,14 @@ const Homepage = () => {
     }
     console.log(formCount);
   }
+
+  useEffect(()=>{
+    if(formCount === 4){
+      setYear(true)
+    } else {
+      setYear(false);
+    }
+  }, [formCount])
 
   return (
     <div className='md:flex md:justify-center md:items-center md:h-screen'>
@@ -134,8 +150,9 @@ const Homepage = () => {
               </div>
             </div>)}
             {formCount === 1 && (<Plans isSelected={isSelected} setIsSelected={setIsSelected} />)}
-            {formCount === 2 && <Addons isSelected={switchAddon} setIsSelected={setSwitchAddon} />}
-            {formCount === 3 && <Summary />}
+            {formCount === 2 && (<Addons isSelected={switchAddon} setIsSelected={setSwitchAddon} />)}
+            {(formCount === 3 || formCount === 4) && (<Summary year={year} setYear={setYear} />)}
+            {formCount === 5 && (<ThankYou />)}
         </div>
 
         {/* hidden in desktop view */}
@@ -144,9 +161,9 @@ const Homepage = () => {
             Go back
           </Link>
           <button className={classNames('w-[100px] h-[40px] rounded-[5px] bg-marineBlue text-white', {
-            'bg-purplishBlue': formCount === 3,
+            'bg-purplishBlue': formCount >= 3,
           })} onClick={increaseFormCount}>
-            {formCount === 3 ? 'Confirm' : 'Next step'}
+            {formCount >= 3 ? 'Confirm' : 'Next step'}
           </button>
         </div>
     </div>
