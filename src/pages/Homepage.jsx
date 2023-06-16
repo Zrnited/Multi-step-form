@@ -14,10 +14,38 @@ const Homepage = () => {
   // const [plans, setPlans] = useState(false);
   const formClassNames = 'border-[1px] border-coolGray text-marineBlue py-2 px-3 rounded-sm focus:outline-none focus:border-2 focus:border-marineBlue lg:py-3'
   const [isSelected, setIsSelected] = useState(false);
-  const [switchAddon, setSwitchAddon] = useState(false);
-  const [year, setYear] = useState(false);
 
+  //add-ons
+  const [switchAddon, setSwitchAddon] = useState(false);
+  const [addOnsForm, setAddOnsForm] = useState({
+    onlineServicePerMonth: false,
+    largerStoragePerMonth: false,
+    customizableProfilePerMonth: false,
+    onlineServicePerYear: false,
+    largerStoragePerYear: false,
+    customizableProfilePerYear: false
+  })
+
+  const [year, setYear] = useState(false);
   const [formCount, setFormCount] = useState(0);
+
+  //finished-up form
+  const [finishedForm, setFinishedForm] = useState({
+    personalInfo: {
+      fullName: "",
+      email: "",
+      phoneNumber: ""
+    },
+    selectedPlan: {
+      perMonth: "",
+      perYear: ""
+    },
+    pickedAddOns: {
+      perMonth: [],
+      perYear: []
+    }
+  });
+  console.log(finishedForm);
 
   //plans
   const monthlyPlans = [
@@ -105,6 +133,23 @@ const Homepage = () => {
       setYear(false);
     }
   }, [formCount])
+
+  useEffect(()=>{
+    if(formik.values.email && formik.values.fullName && formik.values.phoneNumber){
+      setFinishedForm((prevState)=>{
+        return {
+          ...prevState,
+          personalInfo: {
+            fullName: formik.values.fullName,
+            email: formik.values.email,
+            phoneNumber: formik.values.phoneNumber
+          }
+        }
+      })
+    } else {
+      console.log("Value(s) are missing");
+    }
+  }, [formik.values])
 
   return (
     <div className='md:flex md:justify-center md:items-center md:h-screen'>
@@ -234,7 +279,7 @@ const Homepage = () => {
               </div>
             </div>)}
             {formCount === 1 && (<Plans isSelected={isSelected} setIsSelected={setIsSelected} monthlyPlans={monthlyPlans} yearlyPlans={yearlyPlans} />)}
-            {formCount === 2 && (<Addons isSelected={switchAddon} setIsSelected={setSwitchAddon} />)}
+            {formCount === 2 && (<Addons isSelected={switchAddon} setIsSelected={setSwitchAddon} addOnsForm={addOnsForm} setAddOnsForm={setAddOnsForm} />)}
             {(formCount === 3 || formCount === 4) && (<Summary year={year} setYear={setYear} />)}
             {formCount === 5 && (<ThankYou />)}
         </div>

@@ -3,7 +3,20 @@ import { Link } from 'react-router-dom'
 import Switch from './Switch'
 import classNames from 'classnames'
 
-const Addons = ({ isSelected, setIsSelected }) => {
+const Addons = ({ isSelected, setIsSelected, addOnsForm, setAddOnsForm }) => {
+
+  // console.log(addOnsForm);
+
+  const handleChange = (event) => {
+    const { checked, name } = event.target
+    setAddOnsForm((prevState)=>{
+      return {
+        ...prevState,
+        [name]: checked
+      }
+    })
+  }
+
   return (
     <div className={classNames('absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] lg:w-[700px] lg:px-20')}>
 
@@ -14,7 +27,7 @@ const Addons = ({ isSelected, setIsSelected }) => {
         <div className='py-5 flex flex-col gap-4'>
           <div className='flex flex-row gap-4 items-center justify-between border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue'>
             <div className='flex flex-row gap-6 items-center lg:pl-3'>
-              <input type='checkbox' className='h-[20px] w-[20px]' />
+              <input type='checkbox' className='h-[20px] w-[20px]' name='onlineServicePerMonth' checked={addOnsForm.onlineServicePerMonth} onChange={handleChange} value={addOnsForm.onlineServicePerMonth} />
               <div className='flex flex-col'>
                 <h2 className='font-semibold text-marineBlue lg:text-xl'>Online service</h2>
                 <p className='text-coolGray text-xs sm:text-sm lg:text-base'>Access to multiplayer games</p>
@@ -24,7 +37,7 @@ const Addons = ({ isSelected, setIsSelected }) => {
           </div>
           <div className='flex flex-row gap-4 items-center justify-between border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue'>
             <div className='flex flex-row gap-6 items-center lg:pl-3'>
-              <input type='checkbox' className='h-[20px] w-[20px]' />
+             <input type='checkbox' className='h-[20px] w-[20px]' name='largerStoragePerMonth' checked={addOnsForm.largerStoragePerMonth} onChange={handleChange} value={addOnsForm.largerStoragePerMonth} />
               <div className='flex flex-col'>
                 <h2 className='font-semibold text-marineBlue lg:text-xl'>Larger storage</h2>
                 <p className='text-coolGray text-xs sm:text-sm  lg:text-base'>Extra 1TB of cloud save</p>
@@ -34,7 +47,7 @@ const Addons = ({ isSelected, setIsSelected }) => {
           </div>
           <div className='flex flex-row gap-4 items-center justify-between border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue'>
             <div className='flex flex-row gap-6 items-center lg:pl-3'>
-              <input type='checkbox' className='h-[20px] w-[20px]' />
+            <input type='checkbox' className='h-[20px] w-[20px]' name='customizableProfilePerMonth' checked={addOnsForm.customizableProfilePerMonth} onChange={handleChange} value={addOnsForm.customizableProfilePerMonth} />
               <div className='flex flex-col'>
                 <h2 className='font-semibold text-marineBlue lg:text-xl'>Customizable profile</h2>
                 <p className='text-coolGray text-xs sm:text-sm  lg:text-base'>Customize theme on your profile</p>
@@ -52,7 +65,7 @@ const Addons = ({ isSelected, setIsSelected }) => {
         <div className='py-5 flex flex-col gap-4'>
           <div className='flex flex-row gap-4 items-center justify-between border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue'>
             <div className='flex flex-row gap-6 items-center lg:pl-3'>
-              <input type='checkbox' className='h-[20px] w-[20px]' />
+              <input type='checkbox' className='h-[20px] w-[20px]' name='onlineServicePerYear' checked={addOnsForm.onlineServicePerYear} onChange={handleChange} value={addOnsForm.onlineServicePerYear} />
               <div className='flex flex-col'>
                 <h2 className='font-semibold text-marineBlue lg:text-xl'>Online service</h2>
                 <p className='text-coolGray text-xs sm:text-sm lg:text-base'>Access to multiplayer games</p>
@@ -62,7 +75,7 @@ const Addons = ({ isSelected, setIsSelected }) => {
           </div>
           <div className='flex flex-row gap-4 items-center justify-between border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue'>
             <div className='flex flex-row gap-6 items-center lg:pl-3'>
-              <input type='checkbox' className='h-[20px] w-[20px]' />
+              <input type='checkbox' className='h-[20px] w-[20px]' name='largerStoragePerYear' checked={addOnsForm.largerStoragePerYear} onChange={handleChange} value={addOnsForm.largerStoragePerYear} />
               <div className='flex flex-col'>
                 <h2 className='font-semibold text-marineBlue lg:text-xl'>Larger storage</h2>
                 <p className='text-coolGray text-xs sm:text-sm lg:text-base'>Extra 1TB of cloud save</p>
@@ -72,7 +85,7 @@ const Addons = ({ isSelected, setIsSelected }) => {
           </div>
           <div className='flex flex-row gap-4 items-center justify-between border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue'>
             <div className='flex flex-row gap-6 items-center lg:pl-3'>
-              <input type='checkbox' className='h-[20px] w-[20px]' />
+              <input type='checkbox' className='h-[20px] w-[20px]' name='customizableProfilePerYear' checked={addOnsForm.customizableProfilePerYear} onChange={handleChange} value={addOnsForm.customizableProfilePerYear} />
               <div className='flex flex-col'>
                 <h2 className='font-semibold text-marineBlue lg:text-xl'>Customizable profile</h2>
                 <p className='text-coolGray text-xs sm:text-sm lg:text-base'>Customize theme on your profile</p>
