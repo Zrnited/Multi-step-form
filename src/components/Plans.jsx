@@ -17,9 +17,7 @@ const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans, setPlan, 
         <div className='py-3 flex flex-col gap-3 sm:py-5 sm:gap-4 md:flex-row'>
           { monthlyPlans?.map((plan, index)=>{
             return (
-              <div onClick={()=>setPlan(plan)} key={index} className={classNames('flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]', {
-                'bg-red-200 border-spacing-2': finishedForm.selectedPlan.perMonth.title === 'Arcade'
-              })}>
+              <div onClick={()=>setPlan(plan)} key={index} className={classNames(plan.className)}>
                 <div>
                   { plan.svg }
                 </div>
