@@ -3,7 +3,7 @@ import Switch from './Switch'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 
-const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans }) => {
+const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans, setPlan, finishedForm }) => {
 
   return (
     <div className={classNames('absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] lg:w-[700px] lg:px-20', {
@@ -17,13 +17,15 @@ const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans }) => {
         <div className='py-3 flex flex-col gap-3 sm:py-5 sm:gap-4 md:flex-row'>
           { monthlyPlans?.map((plan, index)=>{
             return (
-              <div onClick={()=>console.log(plan)} key={index} className='flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]'>
+              <div onClick={()=>setPlan(plan)} key={index} className={classNames('flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]', {
+                'bg-red-200 border-spacing-2': finishedForm.selectedPlan.perMonth.title === 'Arcade'
+              })}>
                 <div>
                   { plan.svg }
                 </div>
                 <div className='flex flex-col'>
                   <h2 className='font-semibold text-marineBlue'>{plan.title}</h2>
-                  <p className='text-coolGray'>{plan.price}</p>
+                  <p className='text-coolGray'>{`$${plan.price}/mo`}</p>
                 </div>
               </div>
             )
@@ -38,14 +40,14 @@ const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans }) => {
         <div className='py-3 flex flex-col gap-3 sm:py-5 sm:gap-4 md:flex-row'>
           { yearlyPlans?.map((yearlyPlan, index)=>{
             return (
-              <div onClick={()=>console.log(yearlyPlan)} key={index} className='flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]'>
+              <div onClick={()=>setPlan(yearlyPlan)} key={index} className='flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]'>
                 <div>
                   {yearlyPlan.svg}
                 </div>
                 <div className='flex flex-col w-full sm:w-auto'>
                   <h2 className='font-semibold text-marineBlue'>{yearlyPlan.title}</h2>
                   <div className='flex flex-row justify-between sm:flex-col sm:justify-normal'>
-                    <p className='text-coolGray'>{yearlyPlan.price}</p>
+                    <p className='text-coolGray'>{`$${yearlyPlan.price}/yr`}</p>
                     <p className='text-marineBlue'>{yearlyPlan.duration}</p>
                   </div>
                 </div>
@@ -61,7 +63,7 @@ const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans }) => {
           <h1 className='font-medium text-coolGray'>Yearly</h1>
       </div>
 
-        {/* Shown in desktop mode */}
+      {/* Shown in desktop mode */}
       <div className='hidden mt-20 w-full md:flex justify-between items-center'>
         <Link to={'/'} className='text-coolGray hover:underline hover:text-marineBlue transition-all duration-500'>
           Go back
