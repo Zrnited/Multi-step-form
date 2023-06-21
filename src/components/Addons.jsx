@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Switch from './Switch'
 import classNames from 'classnames'
 
-const Addons = ({ isSelected, setIsSelected, addOnsForm, setAddOnsForm }) => {
+const Addons = ({ addOnsForm, setAddOnsForm, finishedForm }) => {
 
   // console.log(addOnsForm);
 
@@ -21,7 +20,7 @@ const Addons = ({ isSelected, setIsSelected, addOnsForm, setAddOnsForm }) => {
     <div className={classNames('absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] lg:w-[700px] lg:px-20')}>
 
       {/* Monthly */}
-      {!isSelected && (<div>
+      {Object.keys(finishedForm.selectedPlan.perMonth).length !== 0 && (<div>
         <h1 className='text-left text-2xl font-semibold text-marineBlue sm:mb-3 lg:text-4xl'>Pick add-ons</h1>
         <p className=' text-coolGray text-sm sm:text-base lg:text-lg'>Add-ons help enhance your gaming experience.</p>
         <div className='py-5 flex flex-col gap-4'>
@@ -59,7 +58,7 @@ const Addons = ({ isSelected, setIsSelected, addOnsForm, setAddOnsForm }) => {
       </div>)}
 
       {/* Yearly */}
-      {isSelected && (<div>
+      {Object.keys(finishedForm.selectedPlan.perYear).length !== 0 && (<div>
         <h1 className='text-left text-2xl font-semibold text-marineBlue sm:mb-3 lg:text-4xl'>Pick add-ons</h1>
         <p className=' text-coolGray text-sm sm:text-base lg:text-lg'>Add-ons help enhance your gaming experience.</p>
         <div className='py-5 flex flex-col gap-4'>
@@ -97,11 +96,11 @@ const Addons = ({ isSelected, setIsSelected, addOnsForm, setAddOnsForm }) => {
       </div>)}
 
 
-      <div className='bg-slate-100 p-2 flex flex-row justify-around items-center sm:mt-2'>
+      {/* <div className='bg-slate-100 p-2 flex flex-row justify-around items-center sm:mt-2'>
           <h1 className='font-medium text-coolGray'>Monthly</h1>
           <Switch isSelected={isSelected} setIsSelected={setIsSelected} />
           <h1 className='font-medium text-coolGray'>Yearly</h1>
-      </div>
+      </div> */}
 
         {/* Shown in desktop mode */}
       <div className='hidden mt-20 w-full md:flex justify-between items-center'>

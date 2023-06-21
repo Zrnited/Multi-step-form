@@ -8,6 +8,7 @@ import Summary from '../components/Summary';
 import ThankYou from '../components/ThankYou';
 import { useFormik } from 'formik';
 import { basicSchema } from '../components/Schemas';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Homepage = () => {
 
@@ -25,9 +26,15 @@ const Homepage = () => {
     largerStoragePerYear: false,
     customizableProfilePerYear: false
   })
+  // const [selectedPlan, setSelectedPlan] = useState({
+  //   arcade: false,
+  //   advanced: false,
+  //   pro: false
+  // })
 
   const [year, setYear] = useState(false);
   const [formCount, setFormCount] = useState(0);
+  console.log(formCount);
 
   //finished-up form
   const [finishedForm, setFinishedForm] = useState({
@@ -56,7 +63,7 @@ const Homepage = () => {
       </svg>,
       tag: "month",
       className: "flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
-      arcadeClassNameSelected: true,
+      isActive: false,
     },
     {
       title: "Advanced",
@@ -65,7 +72,7 @@ const Homepage = () => {
       </svg>,
       tag: "month",
       className: "flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
-      advancedClassNameSelected: true
+      isActive: false
     },
     {
       title: "Pro",
@@ -74,7 +81,7 @@ const Homepage = () => {
       </svg>,
       tag: "month",
       className: "flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
-      proClassNameSelected: true
+      isActive: false
     }
   ]
   const yearlyPlans = [
@@ -106,11 +113,21 @@ const Homepage = () => {
 
   const increaseFormCount = () => {
     if(formCount !== 5){
-      setFormCount(formCount + 1);
+      if((finishedForm.personalInfo.email && finishedForm.personalInfo.fullName && finishedForm.personalInfo.phoneNumber) && (!formik.errors.email && !formik.errors.fullName && !formik.errors.phoneNumber)){
+        setFormCount(formCount + 1);
+      } else {
+        toast.warn('Kindly fill the form appropriately before proceeding.');
+      }
     } else {
       return
     }
-    // console.log(formCount);
+
+    if(formCount === 1 && (Object.keys(finishedForm.selectedPlan.perMonth).length === 0) || (Object.keys(finishedForm.selectedPlan.perMonth).length === 0)){
+      toast.warn('Kindly select a monthly or yearly plan')
+      setFormCount(1);
+    } else {
+      setFormCount(formCount + 1);
+    }
   }
 
   const decreaseFormCount = () => {
@@ -154,6 +171,8 @@ const Homepage = () => {
           }
         }
       })
+      toast.success(`${event.title} monthly plan selected successfully!`);
+      // console.log(event.title);
     } else {
       setFinishedForm((prevState)=>{
         return {
@@ -167,6 +186,7 @@ const Homepage = () => {
           }
         }
       })
+      toast.success(`${event.title} yearly plan selected successfully!`);
     }
   }
 
@@ -485,6 +505,7 @@ const Homepage = () => {
 
   return (
     <div className='md:flex md:justify-center md:items-center md:h-screen'>
+        <ToastContainer />
         <div className='relative flex justify-center md:bg-white md:p-5 md:gap-2 md:rounded-lg md:items-center md:static'>
             <aside className='h-[170px] w-full bg-[url("./assets/sidebar-mobile.png")] bg-red-600 bg-cover bg-no-repeat flex justify-center md:bg-[url("./assets/sidebar-desktop.png")] md:h-[600px] md:w-[250px] md:rounded-xl md:justify-start md:pl-7 lg:w-300px]'>
 
@@ -611,7 +632,7 @@ const Homepage = () => {
               </div>
             </div>)}
             {formCount === 1 && (<Plans isSelected={isSelected} setIsSelected={setIsSelected} monthlyPlans={monthlyPlans} yearlyPlans={yearlyPlans} setPlan={setPlan} finishedForm={finishedForm} />)}
-            {formCount === 2 && (<Addons isSelected={switchAddon} setIsSelected={setSwitchAddon} addOnsForm={addOnsForm} setAddOnsForm={setAddOnsForm} />)}
+            {formCount === 2 && (<Addons isSelected={switchAddon} setIsSelected={setSwitchAddon} addOnsForm={addOnsForm} setAddOnsForm={setAddOnsForm} finishedForm={finishedForm} />)}
             {(formCount === 3 || formCount === 4) && (<Summary year={year} setYear={setYear} />)}
             {formCount === 5 && (<ThankYou />)}
         </div>
