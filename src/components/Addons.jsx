@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 
-const Addons = ({ addOnsForm, setAddOnsForm, finishedForm }) => {
+const Addons = ({ addOnsForm, setAddOnsForm, finishedForm, increaseFormCount, decreaseFormCount }) => {
 
   // console.log(addOnsForm);
 
@@ -20,7 +20,7 @@ const Addons = ({ addOnsForm, setAddOnsForm, finishedForm }) => {
     <div className={classNames('absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] lg:w-[700px] lg:px-20')}>
 
       {/* Monthly */}
-      {Object.keys(finishedForm.selectedPlan.perMonth).length !== 0 && (<div>
+      {finishedForm.selectedPlan.type === 'Month' && (<div>
         <h1 className='text-left text-2xl font-semibold text-marineBlue sm:mb-3 lg:text-4xl'>Pick add-ons</h1>
         <p className=' text-coolGray text-sm sm:text-base lg:text-lg'>Add-ons help enhance your gaming experience.</p>
         <div className='py-5 flex flex-col gap-4'>
@@ -58,7 +58,7 @@ const Addons = ({ addOnsForm, setAddOnsForm, finishedForm }) => {
       </div>)}
 
       {/* Yearly */}
-      {Object.keys(finishedForm.selectedPlan.perYear).length !== 0 && (<div>
+      {finishedForm.selectedPlan.type === 'Year' && (<div>
         <h1 className='text-left text-2xl font-semibold text-marineBlue sm:mb-3 lg:text-4xl'>Pick add-ons</h1>
         <p className=' text-coolGray text-sm sm:text-base lg:text-lg'>Add-ons help enhance your gaming experience.</p>
         <div className='py-5 flex flex-col gap-4'>
@@ -104,10 +104,10 @@ const Addons = ({ addOnsForm, setAddOnsForm, finishedForm }) => {
 
         {/* Shown in desktop mode */}
       <div className='hidden mt-20 w-full md:flex justify-between items-center'>
-        <Link to={'/'} className='text-coolGray hover:underline hover:text-marineBlue transition-all duration-500'>
+        <Link onClick={decreaseFormCount} to={'/'} className='text-coolGray hover:underline hover:text-marineBlue transition-all duration-500'>
           Go back
         </Link>
-        <button className='w-[100px] h-[40px] rounded-sm bg-marineBlue text-white lg:text-lg lg:w-[130px] lg:h-[43px] hover:opacity-95 transition-all ease-in-out delay-100 cursor-pointer'>
+        <button onClick={increaseFormCount} className='w-[100px] h-[40px] rounded-sm bg-marineBlue text-white lg:text-lg lg:w-[130px] lg:h-[43px] hover:opacity-95 transition-all ease-in-out delay-100 cursor-pointer'>
           Next Step
         </button>
       </div>

@@ -32,9 +32,8 @@ const Homepage = () => {
   //   pro: false
   // })
 
-  const [year, setYear] = useState(false);
   const [formCount, setFormCount] = useState(0);
-  console.log(formCount);
+  // console.log(formCount);
 
   //finished-up form
   const [finishedForm, setFinishedForm] = useState({
@@ -43,10 +42,7 @@ const Homepage = () => {
       email: "",
       phoneNumber: ""
     },
-    selectedPlan: {
-      perMonth: {},
-      perYear: {},
-    },
+    selectedPlan: {},
     pickedAddOns: {
       perMonth: [],
       perYear: []
@@ -112,31 +108,59 @@ const Homepage = () => {
   ]
 
   const increaseFormCount = () => {
-    if(formCount !== 5){
+    if(formCount !== 4){
       if((finishedForm.personalInfo.email && finishedForm.personalInfo.fullName && finishedForm.personalInfo.phoneNumber) && (!formik.errors.email && !formik.errors.fullName && !formik.errors.phoneNumber)){
         setFormCount(formCount + 1);
       } else {
+        setFormCount(0);
         toast.warn('Kindly fill the form appropriately before proceeding.');
       }
     } else {
       return
     }
 
-    if(formCount === 1 && (Object.keys(finishedForm.selectedPlan.perMonth).length === 0) || (Object.keys(finishedForm.selectedPlan.perMonth).length === 0)){
+    if((formCount === 1) && (Object.keys(finishedForm.selectedPlan).length === 0)){
       toast.warn('Kindly select a monthly or yearly plan')
       setFormCount(1);
+    } else if ((formCount === 2)) {
+      if(finishedForm.pickedAddOns.perMonth.length !== 0 || finishedForm.pickedAddOns.perYear.length !== 0){
+        setFormCount(formCount + 1);
+      } else if (finishedForm.pickedAddOns.perMonth.length === 0 && finishedForm.pickedAddOns.perYear.length === 0) {
+        setFormCount(2);
+        toast.warn('Kindly select your preferred add-on(s)')
+      } else {
+        return
+      }
     } else {
-      setFormCount(formCount + 1);
+      if(formCount === 0){
+        return 
+      } else {
+        setFormCount(formCount + 1);
+      }
     }
+
+    // if(formCount === 2){
+    //   // toast.warn('Kindly select your preferred add-ons')
+    //   // setFormCount(2);
+    //   alert('Shout halleluyah')
+    // } else {
+    //   console.log('read');
+    //   return
+    // }
   }
 
   const decreaseFormCount = () => {
     if(formCount !== 0){
-      setFormCount(formCount - 1);
+      if(formCount === 4){
+        window.reload()
+        console.log('here to reload');
+      } else {
+        setFormCount(formCount - 1);
+      }
     } else {
       return
     }
-    // console.log(formCount);
+    console.log(formCount);
   }
 
   const onSubmit = (actions)=>{
@@ -163,11 +187,14 @@ const Homepage = () => {
         return {
           ...prevState,
           selectedPlan: {
-            perMonth: {
-              title: event.title,
-              price: event.price
-            },
-            perYear: prevState.selectedPlan.perYear
+            // perMonth: {
+            //   title: event.title,
+            //   price: event.price
+            // },
+            // perYear: prevState.selectedPlan.perYear
+            type: 'Month',
+            title: event.title,
+            price: event.price
           }
         }
       })
@@ -178,11 +205,14 @@ const Homepage = () => {
         return {
           ...prevState,
           selectedPlan: {
-            perYear: {
-              title: event.title,
-              price: event.price
-            },
-            perMonth: prevState.selectedPlan.perMonth
+            // perYear: {
+            //   title: event.title,
+            //   price: event.price
+            // },
+            // perMonth: prevState.selectedPlan.perMonth
+            type: 'Year',
+            title: event.title,
+            price: event.price
           }
         }
       })
@@ -190,13 +220,13 @@ const Homepage = () => {
     }
   }
 
-  useEffect(()=>{
-    if(formCount === 4){
-      setYear(true)
-    } else {
-      setYear(false);
-    }
-  }, [formCount])
+  // useEffect(()=>{
+  //   if(formCount === 4){
+  //     setYear(true)
+  //   } else {
+  //     setYear(false);
+  //   }
+  // }, [formCount])
 
   useEffect(()=>{
     if(formik.values.email && formik.values.fullName && formik.values.phoneNumber){
@@ -511,16 +541,24 @@ const Homepage = () => {
 
               {/* hidden in desktop view */}
               <div className='flex gap-5 flex-row mt-8 md:hidden'>
-                <button className='border border-white rounded-full text-white font-semibold h-[35px] w-[35px]'>
+                <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
+                  'bg-lightBlue text-black border-0': formCount === 0
+                })}>
                   1
                 </button>
-                <button className='border border-white rounded-full text-white font-semibold h-[35px] w-[35px]'>
+                <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
+                  'bg-lightBlue text-black border-0': formCount === 1
+                })}>
                   2
                 </button>
-                <button className='border border-white rounded-full text-white font-semibold h-[35px] w-[35px]'>
+                <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
+                  'bg-lightBlue text-black border-0': formCount === 2
+                })}>
                   3
                 </button>
-                <button className='border border-white rounded-full text-white font-semibold h-[35px] w-[35px]'>
+                <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
+                  'bg-lightBlue text-black border-0': formCount === 3 || formCount === 4
+                })}>
                   4
                 </button>
               </div>
@@ -528,7 +566,9 @@ const Homepage = () => {
               {/* Shown in desktop view */}
               <div className='hidden md:flex flex-col gap-10 pt-16'>
                 <div className='flex flex-row items-center gap-4'>
-                  <button className='border border-white rounded-full text-white font-semibold h-[35px] w-[35px]'>
+                  <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
+                    'bg-lightBlue border-0 text-black': formCount === 0
+                  })}>
                     1
                   </button>
                   <div className='flex flex-col'>
@@ -537,7 +577,9 @@ const Homepage = () => {
                   </div>
                 </div>
                 <div className='flex flex-row items-center gap-5'>
-                  <button className='border border-white rounded-full text-white font-semibold h-[35px] w-[35px]'>
+                  <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
+                    'bg-lightBlue border-0 text-black': formCount === 1
+                  })}>
                     2
                   </button>
                   <div className='flex flex-col'>
@@ -546,7 +588,9 @@ const Homepage = () => {
                   </div>
                 </div>
                 <div className='flex flex-row items-center gap-5'>
-                  <button className='border border-white rounded-full text-white font-semibold h-[35px] w-[35px]'>
+                  <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
+                    'bg-lightBlue border-0 text-black': formCount === 2
+                  })}>
                     3
                   </button>
                   <div className='flex flex-col'>
@@ -555,7 +599,9 @@ const Homepage = () => {
                   </div>
                 </div>
                 <div className='flex flex-row items-center gap-5'>
-                  <button className='border border-white rounded-full text-white font-semibold h-[35px] w-[35px]'>
+                  <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
+                    'bg-lightBlue border-0 text-black': formCount === 3 || formCount === 4
+                  })}>
                     4
                   </button>
                   <div className='flex flex-col'>
@@ -623,26 +669,26 @@ const Homepage = () => {
 
               {/* Shown in desktop view */}
               <div className='hidden mt-24 w-full md:flex justify-between items-center'>
-                <Link to={'/'} className='text-coolGray hover:underline'>
+                <Link onClick={decreaseFormCount} to={'/'} className='text-coolGray hover:underline'>
                   Go back
                 </Link>
-                <button className='w-[100px] h-[40px] rounded-sm bg-marineBlue text-white lg:text-lg lg:w-[130px] lg:h-[43px] hover:opacity-95 transition-all ease-in-out delay-100 cursor-pointer'>
+                <button onClick={increaseFormCount} className='w-[100px] h-[40px] rounded-sm bg-marineBlue text-white lg:text-lg lg:w-[130px] lg:h-[43px] hover:opacity-95 transition-all ease-in-out delay-100 cursor-pointer'>
                   Next Step
                 </button>
               </div>
             </div>)}
-            {formCount === 1 && (<Plans isSelected={isSelected} setIsSelected={setIsSelected} monthlyPlans={monthlyPlans} yearlyPlans={yearlyPlans} setPlan={setPlan} finishedForm={finishedForm} />)}
-            {formCount === 2 && (<Addons isSelected={switchAddon} setIsSelected={setSwitchAddon} addOnsForm={addOnsForm} setAddOnsForm={setAddOnsForm} finishedForm={finishedForm} />)}
-            {(formCount === 3 || formCount === 4) && (<Summary year={year} setYear={setYear} />)}
-            {formCount === 5 && (<ThankYou />)}
+            {formCount === 1 && (<Plans isSelected={isSelected} setIsSelected={setIsSelected} monthlyPlans={monthlyPlans} yearlyPlans={yearlyPlans} setPlan={setPlan} finishedForm={finishedForm} increaseFormCount={increaseFormCount} decreaseFormCount={decreaseFormCount} />)}
+            {formCount === 2 && (<Addons isSelected={switchAddon} setIsSelected={setSwitchAddon} addOnsForm={addOnsForm} setAddOnsForm={setAddOnsForm} finishedForm={finishedForm} increaseFormCount={increaseFormCount} decreaseFormCount={decreaseFormCount} />)}
+            {formCount === 3 && (<Summary finishedForm={finishedForm} decreaseCount={decreaseFormCount} increaseCount={increaseFormCount} />)}
+            {formCount === 4 && (<ThankYou finishedForm={finishedForm} decreaseCount={decreaseFormCount} />)}
         </div>
 
         {/* hidden in desktop view */}
         <div className='bg-white px-4 py-3 w-full flex justify-between absolute bottom-0 items-center md:hidden'>
-          <Link onClick={decreaseFormCount} to={'/'} className='text-coolGray'>
+          <Link onClick={decreaseFormCount} className='text-coolGray'>
             Go back
           </Link>
-          {formCount !== 5 && (<button className={classNames('w-[100px] h-[40px] rounded-[5px] bg-marineBlue text-white', {
+          {formCount !== 4 && (<button className={classNames('w-[100px] h-[40px] rounded-[5px] bg-marineBlue text-white', {
             'bg-purplishBlue': formCount >= 3,
           })} onClick={increaseFormCount}>
             {formCount >= 3 ? 'Confirm' : 'Next step'}

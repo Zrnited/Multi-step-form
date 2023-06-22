@@ -3,7 +3,7 @@ import Switch from './Switch'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 
-const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans, setPlan, finishedForm }) => {
+const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans, setPlan, finishedForm, increaseFormCount, decreaseFormCount }) => {
 
   return (
     <div className={classNames('absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] lg:w-[700px] lg:px-20', {
@@ -63,10 +63,10 @@ const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans, setPlan, 
 
       {/* Shown in desktop mode */}
       <div className='hidden mt-20 w-full md:flex justify-between items-center'>
-        <Link to={'/'} className='text-coolGray hover:underline hover:text-marineBlue transition-all duration-500'>
+        <Link onClick={decreaseFormCount} to={'/'} className='text-coolGray hover:underline hover:text-marineBlue transition-all duration-500'>
           Go back
         </Link>
-        <button className='w-[100px] h-[40px] rounded-sm bg-marineBlue text-white lg:text-lg lg:w-[130px] lg:h-[43px] hover:opacity-95 transition-all ease-in-out delay-100 cursor-pointer'>
+        <button onClick={increaseFormCount} className='w-[100px] h-[40px] rounded-sm bg-marineBlue text-white lg:text-lg lg:w-[130px] lg:h-[43px] hover:opacity-95 transition-all ease-in-out delay-100 cursor-pointer'>
           Next Step
         </button>
       </div>
