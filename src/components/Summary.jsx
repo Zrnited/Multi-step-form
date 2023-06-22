@@ -2,7 +2,7 @@ import React from 'react'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom';
 
-const Summary = ({finishedForm, increaseCount, decreaseCount}) => {
+const Summary = ({finishedForm, increaseCount, decreaseCount, setFormCount}) => {
 
   const monthlyPricericeArray = finishedForm.pickedAddOns.perMonth?.map(item => item.price);
   const yearlyPricericeArray = finishedForm.pickedAddOns.perYear?.map(item => item.price);
@@ -35,7 +35,7 @@ const Summary = ({finishedForm, increaseCount, decreaseCount}) => {
             <h1 className='font-semibold text-marineBlue'>
               {finishedForm.selectedPlan.title}{finishedForm.selectedPlan.type === 'Year' ? ' (Yearly)' : ' (Monthly)'}
             </h1>
-            <button className='underline text-coolGray'>Change</button>
+            <button onClick={()=>setFormCount(1)} className='underline text-coolGray'>Change</button>
           </div>
           <p className='font-semibold text-marineBlue'>{`$${finishedForm.selectedPlan.price}`}{finishedForm.selectedPlan.type === 'Year' ? '/yr' : '/mo'}</p>
         </div>

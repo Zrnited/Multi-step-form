@@ -2,6 +2,7 @@ import React from 'react'
 import Switch from './Switch'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
+import checkmark from '../assets/checkmark.png'
 
 const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans, setPlan, finishedForm, increaseFormCount, decreaseFormCount }) => {
 
@@ -28,6 +29,15 @@ const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans, setPlan, 
               </div>
             )
           }) }
+          <img 
+            src={checkmark}
+            alt='checkmark.jpg'
+            className={classNames('opacity-0 absolute w-6 h-6 right-10 md:hidden', {
+              'opacity-100 top-[113px] sm:top-[135px]': finishedForm.selectedPlan.title === 'Arcade' && finishedForm.selectedPlan.type === 'Month',
+              'opacity-100 top-[198px] sm:top-[225px]': finishedForm.selectedPlan.title === 'Advanced' && finishedForm.selectedPlan.type === 'Month',
+              'opacity-100 top-[285px] sm:top-[316px]': finishedForm.selectedPlan.title === 'Pro' && finishedForm.selectedPlan.type === 'Month'
+            })}
+          />
         </div>
       </div>)}
 
@@ -51,7 +61,16 @@ const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans, setPlan, 
                 </div>
               </div>
             )
-          }) }
+          })}
+          <img 
+            src={checkmark}
+            alt='checkmark.jpg'
+            className={classNames('opacity-0 absolute w-6 h-6 right-10 md:hidden', {
+              'opacity-100 top-[103px] sm:top-[145px]': finishedForm.selectedPlan.title === 'Arcade' && finishedForm.selectedPlan.type === 'Year',
+              'opacity-100 top-[188px] sm:top-[260px]': finishedForm.selectedPlan.title === 'Advanced' && finishedForm.selectedPlan.type === 'Year',
+              'opacity-100 top-[275px] sm:top-[376px]': finishedForm.selectedPlan.title === 'Pro' && finishedForm.selectedPlan.type === 'Year'
+            })}
+          />
         </div>
       </div>)}
 
