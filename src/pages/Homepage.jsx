@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import sidebarImg from '../assets/sidebar-mobile.png'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames';
 import Plans from '../components/Plans'
@@ -12,7 +11,6 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const Homepage = () => {
 
-  // const [plans, setPlans] = useState(false);
   const formClassNames = 'border-[1px] border-coolGray text-marineBlue py-2 px-3 rounded-sm focus:outline-none focus:border-2 focus:border-marineBlue lg:py-3'
   const [isSelected, setIsSelected] = useState(false);
 
@@ -26,14 +24,8 @@ const Homepage = () => {
     largerStoragePerYear: false,
     customizableProfilePerYear: false
   })
-  // const [selectedPlan, setSelectedPlan] = useState({
-  //   arcade: false,
-  //   advanced: false,
-  //   pro: false
-  // })
 
   const [formCount, setFormCount] = useState(0);
-  // console.log(formCount);
 
   //finished-up form
   const [finishedForm, setFinishedForm] = useState({
@@ -48,7 +40,6 @@ const Homepage = () => {
       perYear: []
     }
   });
-  // console.log(finishedForm);
 
   //plans
   const [monthlyPlans, setMonthlyPlans] = useState([
@@ -86,7 +77,6 @@ const Homepage = () => {
       isActive: false
     }
   ])
-  // console.log(monthlyPlans);
 
   const [yearlyPlans, setYearlyPlans] = useState([
     {
@@ -197,7 +187,6 @@ const Homepage = () => {
     validationSchema: basicSchema,
     onSubmit,
   })
-  // console.log(formik.values);
 
   //setting of plans
   const setPlan = (event) => {

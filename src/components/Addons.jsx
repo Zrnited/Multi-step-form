@@ -95,14 +95,7 @@ const Addons = ({ addOnsForm, setAddOnsForm, finishedForm, increaseFormCount, de
         </div>
       </div>)}
 
-
-      {/* <div className='bg-slate-100 p-2 flex flex-row justify-around items-center sm:mt-2'>
-          <h1 className='font-medium text-coolGray'>Monthly</h1>
-          <Switch isSelected={isSelected} setIsSelected={setIsSelected} />
-          <h1 className='font-medium text-coolGray'>Yearly</h1>
-      </div> */}
-
-        {/* Shown in desktop mode */}
+      {/* Shown in desktop mode */}
       <div className='hidden mt-20 w-full md:flex justify-between items-center'>
         <Link onClick={decreaseFormCount} to={'/'} className='text-coolGray hover:underline hover:text-marineBlue transition-all duration-500'>
           Go back
