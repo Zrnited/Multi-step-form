@@ -51,61 +51,81 @@ const Homepage = () => {
   // console.log(finishedForm);
 
   //plans
-  const monthlyPlans = [
+  const [monthlyPlans, setMonthlyPlans] = useState([
     {
+      id: 1,
       title: "Arcade",
       price: 9,
       svg: <svg xmlns="http://www.w3.org/2000/svg"    width="40" height="40" viewBox="0 0 40 40"><g fill="none" fillRule="evenodd"><circle cx="20" cy="20" r="20" fill="#FFAF7E"/><path fill="#FFF" fillRule="nonzero" d="M24.995 18.005h-3.998v5.998h-2v-5.998H15a1 1 0 0 0-1 1V29a1 1 0 0 0 1 1h9.995a1 1 0 0 0 1-1v-9.995a1 1 0 0 0-1-1Zm-5.997 8.996h-2v-1.999h2v2Zm2-11.175a2.999 2.999 0 1 0-2 0v2.18h2v-2.18Z"/></g>
       </svg>,
       tag: "month",
-      className: "flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
+      notActiveClassname: "flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
+      activeClassname: "flex flex-row gap-4 items-center border-2 border-coolGray rounded-lg p-3 bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
       isActive: false,
     },
     {
+      id: 2,
       title: "Advanced",
       price: 12,
       svg: <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g fill="none" fillRule="evenodd"><circle cx="20" cy="20" r="20" fill="#F9818E"/><path fill="#FFF" fillRule="nonzero" d="M25.057 15H14.944C12.212 15 10 17.03 10 19.885c0 2.857 2.212 4.936 4.944 4.936h10.113c2.733 0 4.943-2.08 4.943-4.936S27.79 15 25.057 15ZM17.5 20.388c0 .12-.108.237-.234.237h-1.552v1.569c0 .126-.138.217-.259.217H14.5c-.118 0-.213-.086-.213-.203v-1.583h-1.569c-.126 0-.217-.139-.217-.26v-.956c0-.117.086-.213.202-.213h1.584v-1.554c0-.125.082-.231.203-.231h.989c.12 0 .236.108.236.234v1.551h1.555c.125 0 .231.083.231.204v.988Zm5.347.393a.862.862 0 0 1-.869-.855c0-.472.39-.856.869-.856.481 0 .87.384.87.856 0 .471-.389.855-.87.855Zm1.9 1.866a.86.86 0 0 1-.87-.852.86.86 0 0 1 .87-.855c.48 0 .87.38.87.855a.86.86 0 0 1-.87.852Zm0-3.736a.862.862 0 0 1-.87-.854c0-.472.39-.856.87-.856s.87.384.87.856a.862.862 0 0 1-.87.854Zm1.899 1.87a.862.862 0 0 1-.868-.855c0-.472.389-.856.868-.856s.868.384.868.856a.862.862 0 0 1-.868.855Z"/></g>
       </svg>,
       tag: "month",
-      className: "flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
+      notActiveClassname: "flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
+      activeClassname: "flex flex-row gap-4 items-center border-2 border-coolGray rounded-lg p-3 bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
       isActive: false
     },
     {
+      id: 3,
       title: "Pro",
       price: 15,
       svg: <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g fill="none" fillRule="evenodd"><circle cx="20" cy="20" r="20" fill="#483EFF"/><path fill="#FFF" fillRule="nonzero" d="M26.666 13H13.334A3.333 3.333 0 0 0 10 16.333v7.193a3.447 3.447 0 0 0 2.14 3.24c1.238.5 2.656.182 3.56-.8L18.52 23h2.96l2.82 2.966a3.2 3.2 0 0 0 3.56.8 3.447 3.447 0 0 0 2.14-3.24v-7.193A3.333 3.333 0 0 0 26.666 13Zm-9.333 6H16v1.333a.667.667 0 0 1-1.333 0V19h-1.333a.667.667 0 0 1 0-1.334h1.333v-1.333a.667.667 0 1 1 1.333 0v1.333h1.333a.667.667 0 1 1 0 1.334Zm7.333 2a2.667 2.667 0 1 1 0-5.333 2.667 2.667 0 0 1 0 5.333ZM26 18.333a1.333 1.333 0 1 1-2.667 0 1.333 1.333 0 0 1 2.667 0Z"/></g>
       </svg>,
       tag: "month",
-      className: "flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
+      notActiveClassname: "flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer hover:border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
+      activeClassname: "flex flex-row gap-4 items-center border-2 border-coolGray rounded-lg p-3 bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer border-marineBlue md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
       isActive: false
     }
-  ]
-  const yearlyPlans = [
+  ])
+  // console.log(monthlyPlans);
+
+  const [yearlyPlans, setYearlyPlans] = useState([
     {
+      id: 1,
       title: "Arcade",
       price: 90,
       svg: <svg xmlns="http://www.w3.org/2000/svg"    width="40" height="40" viewBox="0 0 40 40"><g fill="none" fillRule="evenodd"><circle cx="20" cy="20" r="20" fill="#FFAF7E"/><path fill="#FFF" fill-rule="nonzero" d="M24.995 18.005h-3.998v5.998h-2v-5.998H15a1 1 0 0 0-1 1V29a1 1 0 0 0 1 1h9.995a1 1 0 0 0 1-1v-9.995a1 1 0 0 0-1-1Zm-5.997 8.996h-2v-1.999h2v2Zm2-11.175a2.999 2.999 0 1 0-2 0v2.18h2v-2.18Z"/></g>
       </svg>,
       duration: "2 months free",
-      tag: "year"
+      tag: "year",
+      notActiveClassname: "flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
+      activeClassname: "flex flex-row gap-4 items-center border-2 border-marineBlue rounded-lg p-3 bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
+      isActive: false
     },
     {
+      id: 2,
       title: "Advanced",
       price: 120,
       svg: <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g fill="none" fillRule="evenodd"><circle cx="20" cy="20" r="20" fill="#F9818E"/><path fill="#FFF" fillRule="nonzero" d="M25.057 15H14.944C12.212 15 10 17.03 10 19.885c0 2.857 2.212 4.936 4.944 4.936h10.113c2.733 0 4.943-2.08 4.943-4.936S27.79 15 25.057 15ZM17.5 20.388c0 .12-.108.237-.234.237h-1.552v1.569c0 .126-.138.217-.259.217H14.5c-.118 0-.213-.086-.213-.203v-1.583h-1.569c-.126 0-.217-.139-.217-.26v-.956c0-.117.086-.213.202-.213h1.584v-1.554c0-.125.082-.231.203-.231h.989c.12 0 .236.108.236.234v1.551h1.555c.125 0 .231.083.231.204v.988Zm5.347.393a.862.862 0 0 1-.869-.855c0-.472.39-.856.869-.856.481 0 .87.384.87.856 0 .471-.389.855-.87.855Zm1.9 1.866a.86.86 0 0 1-.87-.852.86.86 0 0 1 .87-.855c.48 0 .87.38.87.855a.86.86 0 0 1-.87.852Zm0-3.736a.862.862 0 0 1-.87-.854c0-.472.39-.856.87-.856s.87.384.87.856a.862.862 0 0 1-.87.854Zm1.899 1.87a.862.862 0 0 1-.868-.855c0-.472.389-.856.868-.856s.868.384.868.856a.862.862 0 0 1-.868.855Z"/></g>
       </svg>,
       duration: "2 months free",
-      tag: "year"
+      tag: "year",
+      notActiveClassname: "flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
+      activeClassname: "flex flex-row gap-4 items-center border-2 border-marineBlue rounded-lg p-3 bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
+      isActive: false
     },
     {
+      id: 3,
       title: "Pro",
       price: 150,
       svg: <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g fill="none" fillRule="evenodd"><circle cx="20" cy="20" r="20" fill="#483EFF"/><path fill="#FFF" fillRule="nonzero" d="M26.666 13H13.334A3.333 3.333 0 0 0 10 16.333v7.193a3.447 3.447 0 0 0 2.14 3.24c1.238.5 2.656.182 3.56-.8L18.52 23h2.96l2.82 2.966a3.2 3.2 0 0 0 3.56.8 3.447 3.447 0 0 0 2.14-3.24v-7.193A3.333 3.333 0 0 0 26.666 13Zm-9.333 6H16v1.333a.667.667 0 0 1-1.333 0V19h-1.333a.667.667 0 0 1 0-1.334h1.333v-1.333a.667.667 0 1 1 1.333 0v1.333h1.333a.667.667 0 1 1 0 1.334Zm7.333 2a2.667 2.667 0 1 1 0-5.333 2.667 2.667 0 0 1 0 5.333ZM26 18.333a1.333 1.333 0 1 1-2.667 0 1.333 1.333 0 0 1 2.667 0Z"/></g>
       </svg>,
       duration: "2 months free",
-      tag: "year"
+      tag: "year",
+      notActiveClassname: "flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
+      activeClassname: "flex flex-row gap-4 items-center border-2 border-marineBlue rounded-lg p-3 bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]",
+      isActive: false
     }
-  ]
+  ])
 
   const increaseFormCount = () => {
     if(formCount !== 4){
@@ -181,17 +201,12 @@ const Homepage = () => {
 
   //setting of plans
   const setPlan = (event) => {
-    // console.log(event);
+    const eventId = event.id;
     if(event.tag === "month"){
       setFinishedForm((prevState)=>{
         return {
           ...prevState,
           selectedPlan: {
-            // perMonth: {
-            //   title: event.title,
-            //   price: event.price
-            // },
-            // perYear: prevState.selectedPlan.perYear
             type: 'Month',
             title: event.title,
             price: event.price
@@ -200,16 +215,45 @@ const Homepage = () => {
       })
       toast.success(`${event.title} monthly plan selected successfully!`);
       // console.log(event.title);
+
+      setMonthlyPlans((prevState)=>
+        prevState.map((monthlyplan)=>{
+          if(monthlyplan.id === eventId){
+            return {
+              ...monthlyplan,
+              isActive: !monthlyplan.isActive
+            }
+          } else {
+            return {
+              ...monthlyplan,
+              isActive: false
+            }
+          };
+          // return monthlyplan;
+        })
+      )
+
+      setYearlyPlans((prevState)=>
+        prevState.map((yearlyplan)=>{
+          if(yearlyplan.id === eventId){
+            return {
+              ...yearlyplan,
+              isActive: false
+            }
+          } else {
+            return {
+              ...yearlyplan,
+              isActive: false
+            }
+          };
+          // return monthlyplan;
+        })
+      )
     } else {
       setFinishedForm((prevState)=>{
         return {
           ...prevState,
           selectedPlan: {
-            // perYear: {
-            //   title: event.title,
-            //   price: event.price
-            // },
-            // perMonth: prevState.selectedPlan.perMonth
             type: 'Year',
             title: event.title,
             price: event.price
@@ -217,16 +261,42 @@ const Homepage = () => {
         }
       })
       toast.success(`${event.title} yearly plan selected successfully!`);
+
+      setYearlyPlans((prevState)=>
+        prevState.map((yearlyplan)=>{
+          if(yearlyplan.id === eventId){
+            return {
+              ...yearlyplan,
+              isActive: !yearlyplan.isActive
+            }
+          } else {
+            return {
+              ...yearlyplan,
+              isActive: false
+            }
+          };
+          // return monthlyplan;
+        })
+      )
+
+      setMonthlyPlans((prevState)=>
+        prevState.map((monthlyplan)=>{
+          if(monthlyplan.id === eventId){
+            return {
+              ...monthlyplan,
+              isActive: false
+            }
+          } else {
+            return {
+              ...monthlyplan,
+              isActive: false
+            }
+          };
+          // return monthlyplan;
+        })
+      )
     }
   }
-
-  // useEffect(()=>{
-  //   if(formCount === 4){
-  //     setYear(true)
-  //   } else {
-  //     setYear(false);
-  //   }
-  // }, [formCount])
 
   useEffect(()=>{
     if(formik.values.email && formik.values.fullName && formik.values.phoneNumber){
@@ -559,29 +629,21 @@ const Homepage = () => {
   return (
     <div className='md:flex md:justify-center md:items-center md:h-screen'>
         <ToastContainer />
-        <div className='relative flex justify-center md:bg-white md:p-5 md:gap-2 md:rounded-lg md:items-center md:static'>
+        <div className='relative flex justify-center md:p-5 md:gap-2 md:rounded-lg md:items-center md:static'>
             <aside className='h-[170px] w-full bg-[url("./assets/sidebar-mobile.png")] bg-red-600 bg-cover bg-no-repeat flex justify-center md:bg-[url("./assets/sidebar-desktop.png")] md:h-[600px] md:w-[250px] md:rounded-xl md:justify-start md:pl-7 lg:w-300px]'>
 
               {/* hidden in desktop view */}
               <div className='flex gap-5 flex-row mt-8 md:hidden'>
-                <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
-                  'bg-lightBlue text-black border-0': formCount === 0
-                })}>
+                <button className={formCount !== 0 ? "border border-white rounded-full text-white font-semibold h-[35px] w-[35px]" : "rounded-full font-semibold h-[35px] w-[35px] bg-lightBlue border-0 text-black"}>
                   1
                 </button>
-                <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
-                  'bg-lightBlue text-black border-0': formCount === 1
-                })}>
+                <button className={formCount !== 1 ? "border border-white rounded-full text-white font-semibold h-[35px] w-[35px]" : "rounded-full font-semibold h-[35px] w-[35px] bg-lightBlue border-0 text-black"}>
                   2
                 </button>
-                <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
-                  'bg-lightBlue text-black border-0': formCount === 2
-                })}>
+                <button className={formCount !== 2 ? "border border-white rounded-full text-white font-semibold h-[35px] w-[35px]" : "rounded-full font-semibold h-[35px] w-[35px] bg-lightBlue border-0 text-black"}>
                   3
                 </button>
-                <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
-                  'bg-lightBlue text-black border-0': formCount === 3 || formCount === 4
-                })}>
+                <button className={formCount === 3 || formCount === 4 ? "rounded-full font-semibold h-[35px] w-[35px] bg-lightBlue border-0 text-black" : "border border-white rounded-full text-white font-semibold h-[35px] w-[35px]"}>
                   4
                 </button>
               </div>
@@ -589,9 +651,7 @@ const Homepage = () => {
               {/* Shown in desktop view */}
               <div className='hidden md:flex flex-col gap-10 pt-16'>
                 <div className='flex flex-row items-center gap-4'>
-                  <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
-                    'bg-lightBlue border-0 text-black': formCount === 0
-                  })}>
+                  <button className={formCount !== 0 ? "border border-white rounded-full text-white font-semibold h-[35px] w-[35px]" : "rounded-full font-semibold h-[35px] w-[35px] bg-lightBlue border-0 text-black"}>
                     1
                   </button>
                   <div className='flex flex-col'>
@@ -600,9 +660,7 @@ const Homepage = () => {
                   </div>
                 </div>
                 <div className='flex flex-row items-center gap-5'>
-                  <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
-                    'bg-lightBlue border-0 text-black': formCount === 1
-                  })}>
+                  <button className={formCount !== 1 ? "border border-white rounded-full text-white font-semibold h-[35px] w-[35px]" : "rounded-full font-semibold h-[35px] w-[35px] bg-lightBlue border-0 text-black"}>
                     2
                   </button>
                   <div className='flex flex-col'>
@@ -611,9 +669,7 @@ const Homepage = () => {
                   </div>
                 </div>
                 <div className='flex flex-row items-center gap-5'>
-                  <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
-                    'bg-lightBlue border-0 text-black': formCount === 2
-                  })}>
+                  <button className={formCount !== 2 ? "border border-white rounded-full text-white font-semibold h-[35px] w-[35px]" : "rounded-full font-semibold h-[35px] w-[35px] bg-lightBlue border-0 text-black"}>
                     3
                   </button>
                   <div className='flex flex-col'>
@@ -622,9 +678,7 @@ const Homepage = () => {
                   </div>
                 </div>
                 <div className='flex flex-row items-center gap-5'>
-                  <button className={classNames('border border-white rounded-full text-white font-semibold h-[35px] w-[35px]', {
-                    'bg-lightBlue border-0 text-black': formCount === 3 || formCount === 4
-                  })}>
+                  <button className={formCount !== 3 ? "border border-white rounded-full text-white font-semibold h-[35px] w-[35px]" : "rounded-full font-semibold h-[35px] w-[35px] bg-lightBlue border-0 text-black"}>
                     4
                   </button>
                   <div className='flex flex-col'>

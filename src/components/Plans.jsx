@@ -16,11 +16,11 @@ const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans, setPlan, 
         <h1 className='text-left text-2xl font-semibold text-marineBlue sm:mb-3 lg:text-4xl'>Select your plan</h1>
         <p className=' text-coolGray text-sm sm:text-base lg:text-lg'>You've got the option of monthly or yearly billing.</p>
         <div className='py-3 flex flex-col gap-3 sm:py-5 sm:gap-4 md:flex-row'>
-          { monthlyPlans?.map((plan, index)=>{
+          {monthlyPlans?.map((plan, index)=>{
             return (
-              <div onClick={()=>setPlan(plan)} key={index} className={classNames(plan.className)}>
+              <div onClick={()=>setPlan(plan)} key={index} className={plan.isActive ? plan.activeClassname : plan.notActiveClassname}>
                 <div>
-                  { plan.svg }
+                  {plan.svg}
                 </div>
                 <div className='flex flex-col'>
                   <h2 className='font-semibold text-marineBlue'>{plan.title}</h2>
@@ -28,27 +28,27 @@ const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans, setPlan, 
                 </div>
               </div>
             )
-          }) }
-          <img 
+          })}
+          {/* <img 
             src={checkmark}
             alt='checkmark.jpg'
             className={classNames('opacity-0 absolute w-6 h-6 right-10 md:hidden', {
-              'opacity-100 top-[113px] sm:top-[135px]': finishedForm.selectedPlan.title === 'Arcade' && finishedForm.selectedPlan.type === 'Month',
+              'opacity-100 top-[98px] sm:top-[135px]': finishedForm.selectedPlan.title === 'Arcade' && finishedForm.selectedPlan.type === 'Month',
               'opacity-100 top-[198px] sm:top-[225px]': finishedForm.selectedPlan.title === 'Advanced' && finishedForm.selectedPlan.type === 'Month',
               'opacity-100 top-[285px] sm:top-[316px]': finishedForm.selectedPlan.title === 'Pro' && finishedForm.selectedPlan.type === 'Month'
             })}
-          />
+          /> */}
         </div>
       </div>)}
 
       {/* Yearly */}
       {isSelected && (<div>
         <h1 className='text-left text-2xl font-semibold text-marineBlue sm:mb-3 lg:text-4xl'>Select your plan</h1>
-        <p className=' text-coolGray text-sm sm:text-base lg:text-lg'>You've got the option of monthly or yearly billing.</p>
+        <p className='text-coolGray text-sm sm:text-base lg:text-lg'>You've got the option of monthly or yearly billing.</p>
         <div className='py-3 flex flex-col gap-3 sm:py-5 sm:gap-4 md:flex-row'>
           { yearlyPlans?.map((yearlyPlan, index)=>{
             return (
-              <div onClick={()=>setPlan(yearlyPlan)} key={index} className='flex flex-row gap-4 items-center border-[1.5px] border-coolGray rounded-lg p-3 hover:bg-slate-100 transition-all ease-in-out delay-100 cursor-pointer md:flex-col md:h-[170px] md:w-[120px] md:items-start md:justify-around lg:w-[170px]'>
+              <div onClick={()=>setPlan(yearlyPlan)} key={index} className={yearlyPlan.isActive ? yearlyPlan.activeClassname : yearlyPlan.notActiveClassname}>
                 <div>
                   {yearlyPlan.svg}
                 </div>
@@ -62,7 +62,7 @@ const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans, setPlan, 
               </div>
             )
           })}
-          <img 
+          {/* <img 
             src={checkmark}
             alt='checkmark.jpg'
             className={classNames('opacity-0 absolute w-6 h-6 right-10 md:hidden', {
@@ -70,7 +70,7 @@ const Plans = ({ isSelected, setIsSelected, monthlyPlans, yearlyPlans, setPlan, 
               'opacity-100 top-[188px] sm:top-[260px]': finishedForm.selectedPlan.title === 'Advanced' && finishedForm.selectedPlan.type === 'Year',
               'opacity-100 top-[275px] sm:top-[376px]': finishedForm.selectedPlan.title === 'Pro' && finishedForm.selectedPlan.type === 'Year'
             })}
-          />
+          /> */}
         </div>
       </div>)}
 
