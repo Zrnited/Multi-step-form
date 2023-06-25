@@ -616,7 +616,7 @@ const Homepage = () => {
   }, [finishedForm.selectedPlan])
 
   return (
-    <div className='relative h-screen md:flex md:justify-center md:items-center md:h-screen'>
+    <div className='h-full md:flex md:justify-center md:items-center md:h-screen'>
         <ToastContainer />
         <div className='relative flex justify-center md:p-5 md:gap-2 md:rounded-lg md:h-[600px] md:items-center md:static'>
             <aside className='h-[170px] w-full bg-[url("./assets/sidebar-mobile.png")] bg-red-600 bg-cover bg-no-repeat flex justify-center md:bg-[url("./assets/sidebar-desktop.png")] md:w-[250px] md:h-full md:rounded-xl md:justify-start md:pl-7 lg:w-300px]'>
