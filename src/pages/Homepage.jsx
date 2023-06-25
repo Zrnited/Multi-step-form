@@ -616,7 +616,7 @@ const Homepage = () => {
   }, [finishedForm.selectedPlan])
 
   return (
-    <div className='md:flex md:justify-center md:items-center md:h-screen'>
+    <div className='relative h-screen md:flex md:justify-center md:items-center md:h-screen'>
         <ToastContainer />
         <div className='relative flex justify-center md:p-5 md:gap-2 md:rounded-lg md:h-[600px] md:items-center md:static'>
             <aside className='h-[170px] w-full bg-[url("./assets/sidebar-mobile.png")] bg-red-600 bg-cover bg-no-repeat flex justify-center md:bg-[url("./assets/sidebar-desktop.png")] md:w-[250px] md:h-full md:rounded-xl md:justify-start md:pl-7 lg:w-300px]'>
@@ -678,13 +678,13 @@ const Homepage = () => {
               </div>
             </aside>
             {formCount === 0 && (<div className='absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] md:h-full lg:w-[700px] lg:px-20'>
-              <h1 className='text-left text-2xl font-semibold mb-3 text-marineBlue lg:text-4xl'>Personal info</h1>
-              <p className=' text-coolGray lg:text-lg'>Please provide your name, email address, and phone number.</p>
+              <h1 className='text-left text-2xl font-semibold mb-1.5 text-marineBlue sm:mb-3 lg:text-4xl'>Personal info</h1>
+              <p className=' text-coolGray text-sm sm:text-base lg:text-lg'>Please provide your name, email address, and phone number.</p>
 
               {/* personal info form */}
-              <form onSubmit={formik.handleSubmit} autoComplete='off' className='w-full flex flex-col gap-3 mt-6'>
+              <form onSubmit={formik.handleSubmit} autoComplete='off' className='w-full flex flex-col gap-3 mt-5'>
                 <div className='flex flex-col gap-1'>
-                  <label htmlFor="name" className='text-marineBlue font-medium lg:text-lg'>Name</label>
+                  <label htmlFor="name" className='text-marineBlue font-medium lg:text-lg'>Full name</label>
                   <input 
                     placeholder='e.g. Stephen King'
                     type='text'
@@ -728,9 +728,6 @@ const Homepage = () => {
                   />
                   {formik.errors.phoneNumber && formik.touched.phoneNumber && (<p className='text-sm text-red-500'>{formik.errors.phoneNumber}</p>)}
                 </div>
-                {/* <button type='submit' className='bg-red-500 py-4 text-white'>
-                  Submit
-                </button> */}
               </form>
 
               {/* Shown in desktop view */}
@@ -750,7 +747,7 @@ const Homepage = () => {
         </div>
 
         {/* hidden in desktop view */}
-        <div className='bg-white px-4 py-3 flex justify-between absolute bottom-0 right-0 left-0 items-center md:hidden'>
+        <div className='bg-white px-3 flex justify-between absolute bottom-0 right-0 left-0 items-center h-[55px] md:hidden'>
           <Link onClick={decreaseFormCount} className='text-coolGray'>
             Go back
           </Link>
