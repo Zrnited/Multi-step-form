@@ -24,7 +24,7 @@ const Summary = ({finishedForm, increaseCount, decreaseCount, setFormCount}) => 
   const totalYear = yearlySum + finishedForm.selectedPlan.price;
 
   return (
-    <div className={classNames('absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] lg:w-[700px] lg:px-20')}>
+    <div className={classNames('absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] md:h-full lg:w-[700px] lg:px-20')}>
       <div className='flex flex-col gap-2 mb-5'>
         <h1 className='text-marineBlue font-semibold text-2xl tracking-wide lg:text-4xl'>Finishing up</h1>
         <p className='font-medium text-coolGray'>Double-check everything looks OK before confirming.</p>
@@ -67,7 +67,7 @@ const Summary = ({finishedForm, increaseCount, decreaseCount, setFormCount}) => 
         <Link onClick={decreaseCount} to={'/'} className='text-coolGray hover:underline hover:text-marineBlue transition-all duration-500'>
           Go back
         </Link>
-        <button onClick={increaseCount} className='w-[100px] h-[40px] rounded-sm bg-purplishBlue text-white lg:text-lg lg:w-[130px] lg:h-[43px] hover:opacity-95 transition-all ease-in-out delay-100 cursor-pointer'>
+        <button onClick={increaseCount} className='w-[100px] h-[40px] rounded-md bg-purplishBlue text-white lg:text-lg lg:w-[130px] lg:h-[43px] hover:opacity-95 transition-all ease-in-out delay-100 cursor-pointer'>
           Confirm
         </button>
       </div>

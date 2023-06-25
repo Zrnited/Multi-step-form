@@ -17,7 +17,7 @@ const Addons = ({ addOnsForm, setAddOnsForm, finishedForm, increaseFormCount, de
   }
 
   return (
-    <div className={classNames('absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] lg:w-[700px] lg:px-20')}>
+    <div className={classNames('absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] md:h-full lg:w-[700px] lg:px-20')}>
 
       {/* Monthly */}
       {finishedForm.selectedPlan.type === 'Month' && (<div>
@@ -96,11 +96,11 @@ const Addons = ({ addOnsForm, setAddOnsForm, finishedForm, increaseFormCount, de
       </div>)}
 
       {/* Shown in desktop mode */}
-      <div className='hidden mt-20 w-full md:flex justify-between items-center'>
+      <div className='hidden mt-16 w-full md:flex justify-between items-center'>
         <Link onClick={decreaseFormCount} to={'/'} className='text-coolGray hover:underline hover:text-marineBlue transition-all duration-500'>
           Go back
         </Link>
-        <button onClick={increaseFormCount} className='w-[100px] h-[40px] rounded-sm bg-marineBlue text-white lg:text-lg lg:w-[130px] lg:h-[43px] hover:opacity-95 transition-all ease-in-out delay-100 cursor-pointer'>
+        <button onClick={increaseFormCount} className='w-[100px] h-[40px] rounded-md bg-marineBlue text-white lg:text-lg lg:w-[130px] lg:h-[43px] hover:opacity-95 transition-all ease-in-out delay-100 cursor-pointer'>
           Next Step
         </button>
       </div>

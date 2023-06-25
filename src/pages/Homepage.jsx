@@ -618,8 +618,8 @@ const Homepage = () => {
   return (
     <div className='md:flex md:justify-center md:items-center md:h-screen'>
         <ToastContainer />
-        <div className='relative flex justify-center md:p-5 md:gap-2 md:rounded-lg md:items-center md:static'>
-            <aside className='h-[170px] w-full bg-[url("./assets/sidebar-mobile.png")] bg-red-600 bg-cover bg-no-repeat flex justify-center md:bg-[url("./assets/sidebar-desktop.png")] md:h-[600px] md:w-[250px] md:rounded-xl md:justify-start md:pl-7 lg:w-300px]'>
+        <div className='relative flex justify-center md:p-5 md:gap-2 md:rounded-lg md:h-[600px] md:items-center md:static'>
+            <aside className='h-[170px] w-full bg-[url("./assets/sidebar-mobile.png")] bg-red-600 bg-cover bg-no-repeat flex justify-center md:bg-[url("./assets/sidebar-desktop.png")] md:w-[250px] md:h-full md:rounded-xl md:justify-start md:pl-7 lg:w-300px]'>
 
               {/* hidden in desktop view */}
               <div className='flex gap-5 flex-row mt-8 md:hidden'>
@@ -677,7 +677,7 @@ const Homepage = () => {
                 </div>
               </div>
             </aside>
-            {formCount === 0 && (<div className='absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] lg:w-[700px] lg:px-20'>
+            {formCount === 0 && (<div className='absolute top-24 flex flex-col bg-white p-6 w-[95%] rounded-lg md:static md:w-[70%] md:h-full lg:w-[700px] lg:px-20'>
               <h1 className='text-left text-2xl font-semibold mb-3 text-marineBlue lg:text-4xl'>Personal info</h1>
               <p className=' text-coolGray lg:text-lg'>Please provide your name, email address, and phone number.</p>
 
@@ -734,11 +734,11 @@ const Homepage = () => {
               </form>
 
               {/* Shown in desktop view */}
-              <div className='hidden mt-24 w-full md:flex justify-between items-center'>
+              <div className='hidden mt-8 w-full md:flex justify-between items-center'>
                 <Link onClick={decreaseFormCount} to={'/'} className='text-coolGray hover:underline'>
                   Go back
                 </Link>
-                <button onClick={increaseFormCount} className='w-[100px] h-[40px] rounded-sm bg-marineBlue text-white lg:text-lg lg:w-[130px] lg:h-[43px] hover:opacity-95 transition-all ease-in-out delay-100 cursor-pointer'>
+                <button onClick={increaseFormCount} className='w-[100px] h-[40px] rounded-md bg-marineBlue text-white lg:text-lg lg:w-[130px] lg:h-[43px] hover:opacity-95 transition-all ease-in-out delay-100 cursor-pointer'>
                   Next Step
                 </button>
               </div>
@@ -750,7 +750,7 @@ const Homepage = () => {
         </div>
 
         {/* hidden in desktop view */}
-        <div className='bg-white px-4 py-3 w-full flex justify-between absolute bottom-0 items-center md:hidden'>
+        <div className='bg-white px-4 py-3 flex justify-between absolute bottom-0 right-0 left-0 items-center md:hidden'>
           <Link onClick={decreaseFormCount} className='text-coolGray'>
             Go back
           </Link>
